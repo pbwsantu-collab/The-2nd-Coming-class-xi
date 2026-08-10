@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>W. B. Yeats — The Second Coming (100 MCQs Examination)</title>
+  <title>W. B. Yeats — The Second Coming (Full Text, Analysis, Word Dictionary & 100 MCQs)</title>
   <style>
     :root {
       --primary: #1e3a8a;
-      --primary-light: #3b82f6;
+      --primary-light: #2563eb;
       --accent: #d97706;
+      --accent-light: #fef3c7;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text: #0f172a;
@@ -20,6 +21,7 @@
       --wrong-border: #dc2626;
       --wrong-text: #7f1d1d;
       --border: #e2e8f0;
+      --highlight: #fef08a;
     }
 
     * { box-sizing: border-box; }
@@ -30,11 +32,11 @@
       color: var(--text);
       margin: 0;
       padding: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
@@ -42,14 +44,14 @@
       text-align: center;
       background: var(--primary);
       color: white;
-      padding: 24px 16px;
+      padding: 28px 16px;
       border-radius: 12px;
       margin-bottom: 20px;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
 
-    h1 { margin: 0 0 8px 0; font-size: 1.75rem; }
-    .subtitle { margin: 0; opacity: 0.9; font-size: 0.95rem; }
+    h1 { margin: 0 0 8px 0; font-size: 1.85rem; }
+    .subtitle { margin: 0; opacity: 0.9; font-size: 0.98rem; }
 
     .nav-tabs {
       display: flex;
@@ -57,10 +59,11 @@
       margin-bottom: 20px;
       border-bottom: 2px solid var(--border);
       padding-bottom: 8px;
+      overflow-x: auto;
     }
 
     .tab-btn {
-      padding: 10px 16px;
+      padding: 10px 18px;
       border: none;
       background: transparent;
       font-weight: 600;
@@ -69,6 +72,7 @@
       cursor: pointer;
       border-radius: 6px;
       transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .tab-btn.active {
@@ -79,6 +83,69 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* POEM & ANALYSIS STYLES */
+    .analysis-card {
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .poem-box {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      margin: 16px 0;
+    }
+
+    .poem-stanza { margin-bottom: 20px; }
+
+    /* Interactive Clickable Words */
+    .dict-word {
+      border-bottom: 2px dashed var(--accent);
+      background-color: var(--accent-light);
+      color: #92400e;
+      cursor: pointer;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .dict-word:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .section-title {
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 6px;
+      margin-top: 24px;
+      font-size: 1.35rem;
+    }
+
+    .instruction-banner {
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #0369a1;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* QUIZ STYLES */
     .stats-bar {
       background: var(--card-bg);
       padding: 16px;
@@ -236,6 +303,7 @@
       gap: 8px;
     }
 
+    /* TABLES */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -258,6 +326,7 @@
 
     tr:hover { background: #f1f5f9; }
 
+    /* PARTICLES & MODALS */
     .flower-particle {
       position: fixed;
       pointer-events: none;
@@ -287,7 +356,59 @@
       max-width: 500px;
       width: 90%;
       text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
+
+    /* WORD MEANING POPUP MODAL */
+    .word-modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 90%;
+      text-align: left;
+      position: relative;
+      border-top: 5px solid var(--accent);
+    }
+
+    .word-modal-header {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .word-bn-title {
+      font-size: 1.2rem;
+      color: #92400e;
+      font-weight: 600;
+      margin-bottom: 12px;
+      background: var(--accent-light);
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .word-modal-desc {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .close-modal-btn {
+      background: #cbd5e1;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    .close-modal-btn:hover { background: #94a3b8; color: white; }
   </style>
 </head>
 <body>
@@ -295,16 +416,99 @@
   <div class="container">
     <header>
       <h1>W. B. Yeats — The Second Coming</h1>
-      <p class="subtitle">Class XI Examination 100 MCQs Full-Coverage Question Bank</p>
+      <p class="subtitle">Complete Text, Critical Analysis, Interactive Vocabulary & 100 MCQs Examination Bank</p>
     </header>
 
     <div class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('quiz-tab')">📝 Interactive Test</button>
+      <button class="tab-btn active" onclick="switchTab('poem-tab')">📖 Poem & Analysis</button>
+      <button class="tab-btn" onclick="switchTab('quiz-tab')">📝 Interactive Test (100 MCQs)</button>
       <button class="tab-btn" onclick="switchTab('glossary-tab')">📚 English-Bengali Meaning Bank</button>
     </div>
 
+    <!-- POEM & ANALYSIS TAB -->
+    <div id="poem-tab" class="tab-content active">
+      <div class="instruction-banner">
+        <span>💡 <strong>Interactive Feature:</strong> Click on any <span class="dict-word">highlighted word</span> in the poem or critical analysis to view its English-to-Bengali meaning (বাংলা অর্থ) and contextual significance!</span>
+      </div>
+
+      <!-- POEM SECTION -->
+      <div class="analysis-card">
+        <h2 style="margin-top:0; color: var(--primary);">The Poem: The Second Coming (1919)</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">By William Butler Yeats</p>
+        
+        <div class="poem-box">
+          <div class="poem-stanza">
+            Turning and turning in the <span class="dict-word" data-word="widening gyre" data-bn="সম্প্রসারিত ঘূর্ণিস্রোত / স্পাইরাল চক্র" data-note="Historical cycles moving in expanding spirals away from their central stability.">widening gyre</span><br>
+            The <span class="dict-word" data-word="falcon" data-bn="বাজপাখি" data-note="Symbolizes human intellect, civilization, or humanity drifting away from controlling authority.">falcon</span> cannot hear the <span class="dict-word" data-word="falconer" data-bn="বাজপাখির নির্দেশক / ট্রেইনার" data-note="Symbolizes moral order, religion, logic, or central stabilizing authority.">falconer</span>;<br>
+            <span class="dict-word" data-word="Things fall apart" data-bn="সবকিছু ভেঙে টুকরো হয়ে যাচ্ছে" data-note="The complete disintegration of established social, political, and moral frameworks.">Things fall apart</span>; the <span class="dict-word" data-word="centre cannot hold" data-bn="কেন্দ্র তার স্থায়িত্ব ধরে রাখতে পারছে না" data-note="Central governing bodies and moral values lose control over world events.">centre cannot hold</span>;<br>
+            Mere <span class="dict-word" data-word="anarchy" data-bn="অরাজকতা / চরম বিশৃঙ্খলা" data-note="Total collapse of law, governance, and order leading to chaotic unrest.">anarchy</span> is <span class="dict-word" data-word="loosed" data-bn="মুক্ত / উন্মুক্ত করে দেওয়া" data-note="Unleashed without restraint or boundaries upon humanity.">loosed</span> upon the world,<br>
+            The <span class="dict-word" data-word="blood-dimmed tide" data-bn="রক্তে রঞ্জিত প্লাবন" data-note="Overwhelming wave of violence, bloodshed, and war (referencing WWI and Irish Uprising).">blood-dimmed tide</span> is loosed, and everywhere<br>
+            The <span class="dict-word" data-word="ceremony of innocence" data-bn="পবিত্রতা ও নির্দোষতার প্রথা" data-note="Traditional civilized rituals, moral purity, and human decency.">ceremony of innocence</span> is <span class="dict-word" data-word="drowned" data-bn="নিমজ্জিত / ধ্বংসপ্রাপ্ত" data-note="Submerged and destroyed by relentless waves of violence.">drowned</span>;<br>
+            The <span class="dict-word" data-word="best" data-bn="সৎ ও বিচক্ষণ ব্যক্তিবর্গ" data-note="Wise, reasonable, and moderate people who have lost belief and will to act.">best</span> <span class="dict-word" data-word="lack all conviction" data-bn="দৃঢ় বিশ্বাসের অভাব" data-note="Rational people are passive, paralyzed, and lack determination.">lack all conviction</span>, while the <span class="dict-word" data-word="worst" data-bn="দুষ্ট ও উগ্র ব্যক্তিবর্গ" data-note="Fanatic extremists and ruthless tyrants who seize control.">worst</span><br>
+            Are full of <span class="dict-word" data-word="passionate intensity" data-bn="উগ্র উন্মাদনা / হিংস্র আগ্রহ" data-note="Dangerous emotional enthusiasm and aggressive fanaticism.">passionate intensity</span>.
+          </div>
+
+          <div class="poem-stanza">
+            Surely some <span class="dict-word" data-word="revelation" data-bn="ঐশ্বরিক উদঘাটন / প্রকাশ" data-note="Apocalyptic unveiling or sudden spiritual disclosure of history's next era.">revelation</span> is <span class="dict-word" data-word="at hand" data-bn="নিকটবর্তী / আসন্ন" data-note="Imminent, about to happen very soon.">at hand</span>;<br>
+            Surely the <span class="dict-word" data-word="Second Coming" data-bn="পুনরাগমণ / দ্বিতীয় আগমন" data-note="Inversion of the promised return of Jesus Christ into the birth of a grotesque beast.">Second Coming</span> is at hand.<br>
+            The Second Coming! <span class="dict-word" data-word="Hardly" data-bn="কদাচিৎ / উচ্চারণ করতে না করতেই" data-note="Scarcely or barely spoken before a terrifying vision interrupts.">Hardly</span> are those words out<br>
+            When a vast image out of <span class="dict-word" data-word="Spiritus Mundi" data-bn="বিশ্ব-আত্মা / সমষ্টিগত মানস" data-note="Universal collective subconscious mind storing human mythic archetypes.">Spiritus Mundi</span><br>
+            <span class="dict-word" data-word="Troubles" data-bn="উদ্বিগ্ন করে / পীড়া দেয়" data-note="Disturbs, haunts, and frightens the poet's inner vision.">Troubles</span> my sight: somewhere in sands of the desert<br>
+            A shape with lion body and the head of a man,<br>
+            A <span class="dict-word" data-word="gaze" data-bn="একদৃষ্টিতে তাকানো / দৃষ্টিপাত" data-note="Fixed, steady look expressing the creature's cold nature.">gaze</span> <span class="dict-word" data-word="blank" data-bn="ভাবলেশহীন / অনুভূতিহীন" data-note="Devoid of human warmth, sympathy, or emotion.">blank</span> and <span class="dict-word" data-word="pitiless" data-bn="করুণাহীন / নির্দয়" data-note="Cruel, merciless, unfeeling, like the burning sun.">pitiless</span> as the sun,<br>
+            Is moving its slow thighs, while all about it<br>
+            <span class="dict-word" data-word="Reel" data-bn="ঘোরাঘুরি করা / চক্কর দেওয়া" data-note="Whirling around in frightened, chaotic motion.">Reel</span> shadows of the <span class="dict-word" data-word="indignant" data-bn="ক্ষুব্ধ / রুষ্ট" data-note="Angry, disturbed desert birds sensing an unnatural, monstrous presence.">indignant</span> desert birds.<br>
+            The darkness drops again; but now I know<br>
+            That <span class="dict-word" data-word="twenty centuries" data-bn="বিশ শতাব্দী / ২০০০ বছর" data-note="The two-thousand-year era of Christian civilization since the birth of Christ.">twenty centuries</span> of <span class="dict-word" data-word="stony sleep" data-bn="পাথুরে নিদ্রা / দীর্ঘ সুপ্তাবস্থা" data-note="Static, rigid slumber of pagan pre-Christian forces waiting to wake.">stony sleep</span><br>
+            Were <span class="dict-word" data-word="vexed" data-bn="উত্ত্যক্ত / বিপর্যস্ত" data-note="Disturbed, agitated, and awakened into nightmare.">vexed</span> to nightmare by a <span class="dict-word" data-word="rocking cradle" data-bn="দোলনা দোলা / শিশুর দোলনা" data-note="Symbolizes the birth of infant Jesus in Bethlehem 2,000 years ago.">rocking cradle</span>,<br>
+            And what <span class="dict-word" data-word="rough beast" data-bn="ভয়ঙ্কর পশু / হিংস্র জীব" data-note="Monstrous archetype of a new totalitarian, chaotic historical age.">rough beast</span>, its hour come round at last,<br>
+            <span class="dict-word" data-word="Slouches" data-bn="ভীতিপ্রদ ভঙ্গিতে অগ্রসর হওয়া" data-note="Moves with a heavy, awkward, menacing stride towards its destination.">Slouches</span> towards <span class="dict-word" data-word="Bethlehem" data-bn="বেথলেহেম" data-note="Birthplace of Christ; here serving as the cradle for the monstrous new era.">Bethlehem</span> to be born?
+          </div>
+        </div>
+      </div>
+
+      <!-- CRITICAL ANALYSIS SECTION -->
+      <div class="analysis-card">
+        <h2 style="margin-top:0; color: var(--primary);">Comprehensive Critical Analysis</h2>
+
+        <h3 class="section-title">1. Historical Context & Background</h3>
+        <p>Composed in <strong>January 1919</strong> immediately following the horrors of <em>World War I</em>, W. B. Yeats wrote "The Second Coming" during a period of global devastation, the 1918 Influenza Pandemic, the 1917 Russian Bolshevik Revolution, and the escalating Anglo-Irish Conflict (Irish War of Independence). Yeats felt that Western Christian civilization had reached an irreparable crisis point and was collapsing under the weight of unprecedented violence and social upheaval.</p>
+
+        <h3 class="section-title">2. Philosophical Context: Yeats's Theory of Historical Gyres</h3>
+        <p>Central to understanding the poem is Yeats's esoteric mystical system described in his work <em>A Vision</em>. Yeats believed history moves not linearly, but in expanding and contracting circular spirals called <span class="dict-word" data-word="gyres" data-bn="স্পাইরাল চক্র" data-note="Conical spirals representing 2,000-year historical cycles in Yeats's philosophy.">gyres</span>. Each historical cycle lasts roughly 2,000 years:</p>
+        <ul>
+          <li><strong>Ancient Pagan Era (2000 BCE – 0 CE):</strong> Initiated by the mythic union of Zeus and Leda (represented by the Swan).</li>
+          <li><strong>Christian Era (0 CE – 1900s):</strong> Initiated by the birth of Jesus Christ in <span class="dict-word" data-word="Bethlehem" data-bn="বেথলেহেম" data-note="Holy birthplace of Jesus Christ.">Bethlehem</span>.</li>
+          <li><strong>The Incoming Era (post-1900s):</strong> Reaching the maximum expansion of the Christian gyre where "the centre cannot hold," giving birth to a grotesque, totalitarian new era embodied by the <span class="dict-word" data-word="rough beast" data-bn="ভয়ঙ্কর পশু" data-note="Symbol of totalitarianism and brutality.">rough beast</span>.</li>
+        </ul>
+
+        <h3 class="section-title">3. Detailed Stanza-by-Stanza Breakdown</h3>
+        <p><strong>Stanza 1: Civilizational Breakdown & Disintegration (Lines 1–8)</strong><br>
+        The poem begins with the vivid metaphor of a falcon flying beyond the range of its trainer. As the spiral broadens, communication breaks down—symbolizing humanity's loss of connection with moral, spiritual, and social roots. The famous line <em>"Things fall apart; the centre cannot hold"</em> conveys total political and social fragmentation. Traditional decencies (<span class="dict-word" data-word="ceremony of innocence" data-bn="পবিত্রতার প্রথা" data-note="Civilized moral values.">ceremony of innocence</span>) are submerged in bloodshed (<span class="dict-word" data-word="blood-dimmed tide" data-bn="রক্তাক্ত প্লাবন" data-note="Mass violence and war.">blood-dimmed tide</span>). Yeats highlights a crucial political tragedy: wise and moral people (<span class="dict-word" data-word="the best" data-bn="সৎ ব্যক্তিত্ব" data-note="Moderate rational humans.">the best</span>) are paralyzed by doubt, while ruthless extremists (<span class="dict-word" data-word="the worst" data-bn="দুষ্ট ব্যক্তিত্ব" data-note="Fanatics.">the worst</span>) rule with violent zeal.</p>
+
+        <p><strong>Stanza 2: The Vision of the Beast & Apocalyptic Inversion (Lines 9–22)</strong><br>
+        The speaker senses that this chaos must herald a major cosmic transition—a <span class="dict-word" data-word="Second Coming" data-bn="পুনরাগমণ" data-note="Inverted Christian event.">Second Coming</span>. However, instead of the peaceful return of Christ, the poet experiences a haunting vision drawn from <span class="dict-word" data-word="Spiritus Mundi" data-bn="বিশ্ব-আত্মা" data-note="Universal repository of human archetypal memories.">Spiritus Mundi</span> (the collective subconscious). In the desert, a Sphinx-like monster—part lion, part man—awakens. Its gaze is "blank and pitiless as the sun," utterly devoid of human empathy. After two millennia of "stony sleep," this terrifying creature is slouching towards Bethlehem to replace the Christian era with an age of tyrannical, raw force.</p>
+
+        <h3 class="section-title">4. Core Themes</h3>
+        <ul>
+          <li><strong>Collapse of Civilizational Order:</strong> Society's moral institutions lose their binding power when authority breaks down.</li>
+          <li><strong>Inversion of Prophecy:</strong> Subversion of Christian biblical hope; salvation is replaced by an apocalyptic birth of chaos.</li>
+          <li><strong>Passivity of the Wise vs. Zeal of Fanatics:</strong> The moral crisis where rational leadership abdicates responsibility to aggressive extremists.</li>
+          <li><strong>Cyclical History:</strong> History is an unstoppable, alternating momentum of creation and destruction.</li>
+        </ul>
+
+        <h3 class="section-title">5. Poetic Style, Structure & Literary Devices</h3>
+        <ul>
+          <li><strong>Form:</strong> Written in two stanzas of irregular <span class="dict-word" data-word="blank verse" data-bn="অমিত্রাক্ষর ছন্দ" data-note="Unrhymed iambic pentameter with deliberate rhythmic disruptions.">blank verse</span> (rough iambic pentameter without a fixed rhyme scheme), mirroring the decay of traditional order.</li>
+          <li><strong>Simile:</strong> "A gaze blank and pitiless <em>as the sun</em>"—underscores absolute indifference.</li>
+          <li><strong>Metaphor:</strong> The falcon and falconer; the blood-dimmed tide; the rocking cradle.</li>
+          <li><strong>Rhetorical Question:</strong> The poem ends on a haunting question that leaves the reader in suspense and dread regarding humanity's impending future.</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- QUIZ TAB -->
-    <div id="quiz-tab" class="tab-content active">
+    <div id="quiz-tab" class="tab-content">
       <div class="stats-bar">
         <div class="stat-item">Answered<div class="stat-val" id="answered-count">0 / 100</div></div>
         <div class="stat-item">Score<div class="stat-val" id="score-val">0</div></div>
@@ -355,6 +559,14 @@
           <tr><td>Rough beast</td><td>হিংস্র/ভয়ঙ্কর পশু</td><td>Monstrous symbol of an incoming totalitarian age</td></tr>
           <tr><td>Slouches</td><td>অশোভন বা ভীতিপ্রদ ঢঙে হাঁটা</td><td>Awkward, sinister movement towards rebirth</td></tr>
           <tr><td>Bethlehem</td><td>বেথলেহেম (যীশুর জন্মস্থান)</td><td>Birthplace of Christ, contrast with monstrous birth</td></tr>
+          <tr><td>Things fall apart</td><td>সবকিছু ভেঙে টুকরো হয়ে যাওয়া</td><td>Complete collapse of cultural and political systems</td></tr>
+          <tr><td>Centre cannot hold</td><td>কেন্দ্র স্থায়িত্ব রাখতে পারছে না</td><td>Loss of governing stability and moral baseline</td></tr>
+          <tr><td>Lack all conviction</td><td>দৃঢ় বিশ্বাসের অভাব</td><td>Passivity and hesitation among educated/rational people</td></tr>
+          <tr><td>Passionate intensity</td><td>উগ্র উন্মাদনা / হিংস্র আগ্রহ</td><td>Fanatical enthusiasm of dangerous extremists</td></tr>
+          <tr><td>Revelation</td><td>ঐশ্বরিক উদঘাটন</td><td>Unveiling of cosmic truths or divine events</td></tr>
+          <tr><td>Indignant</td><td>ক্ষুব্ধ / রুষ্ট</td><td>Angered by supernatural or unnatural events</td></tr>
+          <tr><td>Stony sleep</td><td>পাথুরে বা নিথর নিদ্রা</td><td>Centuries of silent latency before awakening</td></tr>
+          <tr><td>Vexed</td><td>উত্ত্যক্ত / বিপর্যস্ত</td><td>Disturbed into nightmares by new spiritual forces</td></tr>
         </tbody>
       </table>
     </div>
@@ -372,114 +584,126 @@
     </div>
   </div>
 
+  <!-- WORD MEANING POPUP MODAL -->
+  <div class="modal-overlay" id="word-modal">
+    <div class="word-modal-content">
+      <div class="word-modal-header">
+        <span id="wm-word">Word</span>
+        <button class="close-modal-btn" onclick="closeWordModal()">✕</button>
+      </div>
+      <div class="word-bn-title" id="wm-bn">বাংলা অর্থ</div>
+      <div class="word-modal-desc" id="wm-note">Poetic Context & Explanation...</div>
+    </div>
+  </div>
+
   <script>
     const questions = [
-      { id: 1, q: "Who is the poet of The Second Coming?", options: ["W. B. Yeats", "T. S. Eliot", "W. H. Auden", "Ezra Pound"], ans: 0, note: "Written by Irish poet W. B. Yeats in 1919." },
-      { id: 2, q: "What does the phrase 'Second Coming' primarily refer to?", options: ["The birth of a king", "The beginning of a war", "The fall of Rome", "The return of Christ"], ans: 3, note: "Traditionally refers to the Christian belief in the return of Jesus Christ." },
-      { id: 3, q: "What has happened to the falcon in relation to the falconer?", options: ["It has been captured", "It can no longer hear the falconer", "It has returned", "It has killed the falconer"], ans: 1, note: "Textual reference: 'The falcon cannot hear the falconer'." },
-      { id: 4, q: "The falcon and falconer mainly symbolize:", options: ["Nature and civilization", "Youth and old age", "The individual and social authority/order", "Humanity and religion"], ans: 2, note: "Represents humanity losing touch with traditional guiding principles and order." },
-      { id: 5, q: "What does the widening gyre suggest?", options: ["Increasing disorder and separation", "Increasing control", "Political stability", "Religious harmony"], ans: 0, note: "The expanding spiral reflects growing chaotic movement away from the origin." },
-      { id: 6, q: "According to the speaker, 'Things fall apart' because:", options: ["nature is changing", "the falcon is weak", "the centre cannot hold", "civilization is advancing"], ans: 2, note: "Famous line: 'Things fall apart; the centre cannot hold'." },
-      { id: 7, q: "What is happening to the centre?", options: ["It is becoming stronger", "It is moving inward", "It is disappearing into nature", "It cannot hold"], ans: 3, note: "The controlling structure of civilization is losing strength." },
-      { id: 8, q: "What is described as being 'drowned' in the poem?", options: ["The falcon", "The desert", "The ceremony of innocence", "The beast"], ans: 2, note: "'The ceremony of innocence is drowned'." },
-      { id: 9, q: "The phrase 'The blood-dimmed tide' creates an image of:", options: ["peaceful water", "widespread violence and bloodshed", "a beautiful sunset", "religious celebration"], ans: 1, note: "Reflects the violent historical realities of World War I and political revolutions." },
-      { id: 10, q: "What is the condition of the best according to the poem?", options: ["They lack conviction", "They are confident", "They are victorious", "They are violent"], ans: 0, note: "'The best lack all conviction'." },
-      { id: 11, q: "What is the condition of the worst?", options: ["They are silent", "They lack enthusiasm", "They are peaceful", "They are full of passionate intensity"], ans: 3, note: "'While the worst / Are full of passionate intensity'." },
-      { id: 12, q: "What does the speaker initially think is at hand?", options: ["The end of history", "A new political system", "The Second Coming", "The return of the falcon"], ans: 2, note: "'Surely the Second Coming is at hand'." },
-      { id: 13, q: "What happens immediately after the speaker imagines the Second Coming?", options: ["A monstrous image appears", "A dove appears", "A Christ-like figure appears", "The falcon returns"], ans: 0, note: "Instead of a savior, a terrifying vision emerges from Spiritus Mundi." },
-      { id: 14, q: "Where does the speaker see the terrifying creature?", options: ["In a church", "In the sea", "In a battlefield", "In the desert sands"], ans: 3, note: "Text: 'Somewhere in sands of the desert'." },
-      { id: 15, q: "What is the creature's approximate form?", options: ["A beautiful angel", "A shape with lion body and the head of a man", "A horse", "A giant serpent"], ans: 1, note: "'A shape with lion body and the head of a man'." },
+      { id: 1, q: "Who is the poet of The Second Coming?", options: ["T. S. Eliot", "W. B. Yeats", "W. H. Auden", "Ezra Pound"], ans: 1, note: "Written by Irish poet W. B. Yeats in 1919." },
+      { id: 2, q: "What does the phrase 'Second Coming' primarily refer to?", options: ["The birth of a king", "The return of Christ", "The beginning of a war", "The fall of Rome"], ans: 1, note: "Traditionally refers to the Christian belief in the return of Jesus Christ." },
+      { id: 3, q: "What has happened to the falcon in relation to the falconer?", options: ["It has been captured", "It has returned", "It can no longer hear the falconer", "It has killed the falconer"], ans: 2, note: "Textual reference: 'The falcon cannot hear the falconer'." },
+      { id: 4, q: "The falcon and falconer mainly symbolize:", options: ["Nature and civilization", "Youth and old age", "Humanity and religion", "The individual and social authority/order"], ans: 3, note: "Represents humanity losing touch with traditional guiding principles and order." },
+      { id: 5, q: "What does the widening gyre suggest?", options: ["Increasing control", "Increasing disorder and separation", "Political stability", "Religious harmony"], ans: 1, note: "The expanding spiral reflects growing chaotic movement away from the origin." },
+      { id: 6, q: "According to the speaker, 'Things fall apart' because:", options: ["Nature is changing", "the centre cannot hold", "the falcon is weak", "civilization is advancing"], ans: 1, note: "Famous line: 'Things fall apart; the centre cannot hold'." },
+      { id: 7, q: "What is happening to the centre?", options: ["It is becoming stronger", "It is moving inward", "It cannot hold", "It is disappearing into nature"], ans: 2, note: "The controlling structure of civilization is losing strength." },
+      { id: 8, q: "What is described as being 'drowned' in the poem?", options: ["The falcon", "The ceremony of innocence", "The desert", "The beast"], ans: 1, note: "'The ceremony of innocence is drowned'." },
+      { id: 9, q: "The phrase 'The blood-dimmed tide' creates an image of:", options: ["peaceful water", "a beautiful sunset", "widespread violence and bloodshed", "religious celebration"], ans: 2, note: "Reflects the violent historical realities of World War I and political revolutions." },
+      { id: 10, q: "What is the condition of the best according to the poem?", options: ["They are confident", "They lack conviction", "They are victorious", "They are violent"], ans: 1, note: "'The best lack all conviction'." },
+      { id: 11, q: "What is the condition of the worst?", options: ["They are silent", "They lack enthusiasm", "They are full of passionate intensity", "They are peaceful"], ans: 2, note: "'While the worst / Are full of passionate intensity'." },
+      { id: 12, q: "What does the speaker initially think is at hand?", options: ["The end of history", "The Second Coming", "A new political system", "The return of the falcon"], ans: 1, note: "'Surely the Second Coming is at hand'." },
+      { id: 13, q: "What happens immediately after the speaker imagines the Second Coming?", options: ["A dove appears", "A Christ-like figure appears", "A monstrous image appears", "The falcon returns"], ans: 2, note: "Instead of a savior, a terrifying vision emerges from Spiritus Mundi." },
+      { id: 14, q: "Where does the speaker see the terrifying creature?", options: ["In a church", "In the desert sands", "In the sea", "In a battlefield"], ans: 1, note: "Text: 'Somewhere in sands of the desert'." },
+      { id: 15, q: "What is the creature's approximate form?", options: ["A beautiful angel", "A bird-like creature with a lion's body and human head", "A horse", "A giant serpent"], ans: 1, note: "'A shape with lion body and the head of a man'." },
       { id: 16, q: "What does the creature seem to be doing?", options: ["Sleeping", "Singing", "Moving toward Bethlehem", "Flying toward Rome"], ans: 2, note: "'Slouches towards Bethlehem to be born'." },
-      { id: 17, q: "Bethlehem is traditionally associated with:", options: ["the birth of Christ", "Shakespeare", "the French Revolution", "the First World War"], ans: 0, note: "The holy birthplace of Jesus." },
-      { id: 18, q: "What question concludes the poem?", options: ["'Where is the falcon?'", "'Can the centre hold?'", "'Where are the best?'", "'And what rough beast, its hour come round at last, / Slouches towards Bethlehem to be born?'"], ans: 3, note: "The poem ends with this famous apocalyptic rhetorical question." },
+      { id: 17, q: "Bethlehem is traditionally associated with:", options: ["Shakespeare", "the birth of Christ", "the French Revolution", "the First World War"], ans: 1, note: "The holy birthplace of Jesus." },
+      { id: 18, q: "What question concludes the poem?", options: ["'Where is the falcon?'", "'Can the centre hold?'", "'And what rough beast, its hour come round at last, / Slouches towards Bethlehem to be born?'", "'Where are the best?'"], ans: 2, note: "The poem ends with this famous apocalyptic rhetorical question." },
       { id: 19, q: "The 'rough beast' most strongly represents:", options: ["Christian salvation", "a terrifying new historical era", "natural beauty", "political democracy"], ans: 1, note: "Symbolizes totalitarianism, chaos, and a brutal dark age." },
       { id: 20, q: "The ending of the poem creates a feeling of:", options: ["certainty and happiness", "humour", "fear and uncertainty", "romantic love"], ans: 2, note: "Leaves the reader in suspense and prophetic apprehension." },
 
-      { id: 21, q: "The dominant theme of the poem is:", options: ["social and historical disorder", "romantic love", "childhood", "natural beauty"], ans: 0, note: "Theme focusing on civilizational collapse and historical transformation." },
-      { id: 22, q: "The poem presents civilization as:", options: ["perfectly stable", "moving toward greater order", "completely peaceful", "collapsing into chaos"], ans: 3, note: "Anarchy is loosed upon the world." },
+      { id: 21, q: "The dominant theme of the poem is:", options: ["romantic love", "social and historical disorder", "childhood", "natural beauty"], ans: 1, note: "Theme focusing on civilizational collapse and historical transformation." },
+      { id: 22, q: "The poem presents civilization as:", options: ["perfectly stable", "moving toward greater order", "collapsing into chaos", "completely peaceful"], ans: 2, note: "Anarchy is loosed upon the world." },
       { id: 23, q: "The 'centre' may symbolically represent:", options: ["a geographical location only", "the forces that maintain social order", "the desert", "Bethlehem"], ans: 1, note: "Represents moral, political, and spiritual anchor structures." },
       { id: 24, q: "The poem's atmosphere is predominantly:", options: ["comic", "cheerful", "ominous", "romantic"], ans: 2, note: "Dark, foreboding, and visionary." },
-      { id: 25, q: "Which concept is particularly important to Yeats's historical philosophy?", options: ["Cyclical movement of history", "Linear progress", "Scientific evolution only", "Permanent peace"], ans: 0, note: "Yeats believed history moves in alternating 2,000-year gyres." },
-      { id: 26, q: "The widening gyre symbolizes:", options: ["increasing unity", "spiritual enlightenment", "increasing distance from a controlling centre", "romantic attraction"], ans: 2, note: "Dispersal of energy and loss of central authority." },
+      { id: 25, q: "Which concept is particularly important to Yeats's historical philosophy?", options: ["Linear progress", "Cyclical movement of history", "Scientific evolution only", "Permanent peace"], ans: 1, note: "Yeats believed history moves in alternating 2,000-year gyres." },
+      { id: 26, q: "The widening gyre symbolizes:", options: ["increasing unity", "increasing distance from a controlling centre", "spiritual enlightenment", "romantic attraction"], ans: 1, note: "Dispersal of energy and loss of central authority." },
       { id: 27, q: "The poem suggests that political and social structures are:", options: ["becoming stable", "losing their ability to maintain order", "becoming religious", "returning to childhood"], ans: 1, note: "Breakdown of law and moral authority." },
-      { id: 28, q: "What contrast is established between 'the best' and 'the worst'?", options: ["The best are passionate; the worst are silent", "Both groups are equally peaceful", "The best lack conviction; the worst possess passionate intensity", "Both groups are equally inactive"], ans: 2, note: "The tragedy of political crisis: sensible people are passive, fanatics are empowered." },
-      { id: 29, q: "This contrast suggests that:", options: ["dangerous forces can become powerful when responsible people are passive", "moderation always wins", "the best are always victorious", "violence brings peace"], ans: 0, note: "Passivity enables extremist violence." },
-      { id: 30, q: "The poem's vision of the future is:", options: ["optimistic", "completely peaceful", "comic", "uncertain and frightening"], ans: 3, note: "Prophetic dread about the approaching new age." },
-      { id: 31, q: "The poem is concerned with the relationship between:", options: ["love and marriage", "order and chaos", "youth and education", "nature and agriculture"], ans: 1, note: "Explores what happens when chaos replaces order." },
+      { id: 28, q: "What contrast is established between 'the best' and 'the worst'?", options: ["The best are passionate; the worst are silent", "The best lack conviction; the worst possess passionate intensity", "Both groups are equally peaceful", "Both groups are equally inactive"], ans: 1, note: "The tragedy of political crisis: sensible people are passive, fanatics are empowered." },
+      { id: 29, q: "This contrast suggests that:", options: ["moderation always wins", "dangerous forces can become powerful when responsible people are passive", "the best are always victorious", "violence brings peace"], ans: 1, note: "Passivity enables extremist violence." },
+      { id: 30, q: "The poem's vision of the future is:", options: ["optimistic", "uncertain and frightening", "completely peaceful", "comic"], ans: 1, note: "Prophetic dread about the approaching new age." },
+      { id: 31, q: "The poem is concerned with the relationship between:", options: ["order and chaos", "love and marriage", "youth and education", "nature and agriculture"], ans: 0, note: "Explores what happens when chaos replaces order." },
       { id: 32, q: "The poem can be read as a response to:", options: ["a period of historical violence and upheaval", "a wedding ceremony", "a scientific discovery", "a peaceful election"], ans: 0, note: "Written after World War I, Irish unrest, and the Russian Revolution." },
-      { id: 33, q: "The Second Coming in Yeats's poem is presented as:", options: ["a simple repetition of Christian salvation", "a happy celebration", "a disturbing transformation of the traditional Christian expectation", "a return to childhood"], ans: 2, note: "Inverts Christian prophecy into a terrifying birth." },
+      { id: 33, q: "The Second Coming in Yeats's poem is presented as:", options: ["a simple repetition of Christian salvation", "a disturbing transformation of the traditional Christian expectation", "a happy celebration", "a return to childhood"], ans: 1, note: "Inverts Christian prophecy into a terrifying birth." },
       { id: 34, q: "The poem primarily expresses:", options: ["hope without fear", "anxiety about a changing civilization", "admiration for war", "love of nature"], ans: 1, note: "Modernist anxiety regarding historical collapse." },
-      { id: 35, q: "Which is the best statement of the poem's central idea?", options: ["Civilization is permanently stable.", "Nature always defeats humanity.", "When established order collapses, a terrifying new age may emerge.", "Christianity has disappeared completely."], ans: 2, note: "Core thesis of the poem." },
+      { id: 35, q: "Which is the best statement of the poem's central idea?", options: ["Civilization is permanently stable.", "When established order collapses, a terrifying new age may emerge.", "Nature always defeats humanity.", "Christianity has disappeared completely."], ans: 1, note: "Core thesis of the poem." },
 
-      { id: 36, q: "'Turning and turning in the widening gyre' contains:", options: ["irony only", "repetition", "pun", "understatement"], ans: 1, note: "Repetition of 'turning' emphasizes endless rotary motion." },
-      { id: 37, q: "The repetition of 'turning and turning' emphasizes:", options: ["stillness", "silence", "continuous movement", "happiness"], ans: 2, note: "Highlights relentless spiraling expansion." },
+      { id: 36, q: "'Turning and turning in the widening gyre' contains:", options: ["repetition", "irony only", "pun", "understatement"], ans: 0, note: "Repetition of 'turning' emphasizes endless rotary motion." },
+      { id: 37, q: "The repetition of 'turning and turning' emphasizes:", options: ["stillness", "continuous movement", "silence", "happiness"], ans: 1, note: "Highlights relentless spiraling expansion." },
       { id: 38, q: "The falcon is primarily a:", options: ["symbol", "simile", "pun", "paradox only"], ans: 0, note: "Acts as a central symbol for humanity/intellect." },
-      { id: 39, q: "'The falcon cannot hear the falconer' is an example of:", options: ["alliteration only", "rhyme", "symbolism", "hyperbole only"], ans: 2, note: "Symbolic representation of lost authority." },
-      { id: 40, q: "'Things fall apart' is an example of:", options: ["simile", "metaphorical expression", "onomatopoeia", "pun"], ans: 1, note: "Metaphor for societal disintegration." },
-      { id: 41, q: "'The blood-dimmed tide' is primarily an example of:", options: ["auditory imagery", "comic imagery", "tactile imagery only", "visual imagery"], ans: 3, note: "Vivid visual description of widespread bloodshed." },
+      { id: 39, q: "'The falcon cannot hear the falconer' is an example of:", options: ["symbolism", "alliteration only", "rhyme", "hyperbole only"], ans: 0, note: "Symbolic representation of lost authority." },
+      { id: 40, q: "'Things fall apart' is an example of:", options: ["metaphorical expression", "simile", "onomatopoeia", "pun"], ans: 0, note: "Metaphor for societal disintegration." },
+      { id: 41, q: "'The blood-dimmed tide' is primarily an example of:", options: ["visual imagery", "auditory imagery", "comic imagery", "tactile imagery only"], ans: 0, note: "Vivid visual description of widespread bloodshed." },
       { id: 42, q: "'The ceremony of innocence is drowned' contains:", options: ["personification/metaphorical imagery", "pun", "euphemism only", "paradox only"], ans: 0, note: "Metaphorically personifies innocence being submerged by violence." },
-      { id: 43, q: "The phrase 'Spiritus Mundi' refers broadly to:", options: ["the individual human mind only", "a political party", "the collective/world spirit or store of images", "a geographical place"], ans: 2, note: "Latin term for the collective universal reservoir of archetypal memories." },
-      { id: 44, q: "The apparition of the creature is an example of:", options: ["comic relief", "symbolic imagery", "realistic autobiography", "understatement"], ans: 1, note: "Symbolic visionary representation of the new age." },
+      { id: 43, q: "The phrase 'Spiritus Mundi' refers broadly to:", options: ["the individual human mind only", "the collective/world spirit or store of images", "a political party", "a geographical place"], ans: 1, note: "Latin term for the collective universal reservoir of archetypal memories." },
+      { id: 44, q: "The apparition of the creature is an example of:", options: ["symbolic imagery", "comic relief", "realistic autobiography", "understatement"], ans: 0, note: "Symbolic visionary representation of the new age." },
       { id: 45, q: "'The darkness drops again' contains strong:", options: ["visual imagery", "taste imagery", "smell imagery", "comic imagery"], ans: 0, note: "Visual imagery of sudden obscurity." },
-      { id: 46, q: "'A gaze blank and pitiless as the sun' contains:", options: ["pun", "paradox only", "simile", "rhyme"], ans: 2, note: "Simile using 'as the sun'." },
+      { id: 46, q: "'A gaze blank and pitiless as the sun' contains:", options: ["simile", "pun", "paradox only", "rhyme"], ans: 0, note: "Simile using 'as the sun'." },
       { id: 47, q: "The word 'blank' in the description of the creature suggests:", options: ["compassion", "emotional emptiness", "joy", "wisdom"], ans: 1, note: "Devoid of human feeling or empathy." },
-      { id: 48, q: "'Pitiless' suggests:", options: ["mercy", "affection", "friendship", "lack of compassion"], ans: 3, note: "Rorshach-like cold, uncompromising force." },
-      { id: 49, q: "The comparison with the sun makes the creature's gaze seem:", options: ["powerful and indifferent", "weak and uncertain", "loving and gentle", "humorous"], ans: 0, note: "The sun shines without human warmth or bias." },
-      { id: 50, q: "'Reel shadows' is an example of:", options: ["auditory imagery", "visual imagery", "taste imagery", "olfactory imagery"], ans: 1, note: "Visual image of swirling desert shadows." },
-      { id: 51, q: "'The nightmare of a rocking cradle' combines the ideas of:", options: ["love and peace", "birth and terror", "education and childhood", "music and dance"], ans: 1, note: "Juxtaposes gentle nursery comfort with terrifying visions." },
-      { id: 52, q: "The rocking cradle traditionally suggests:", options: ["death only", "political power", "infancy and birth", "war"], ans: 2, note: "Standard emblem of infant care." },
-      { id: 53, q: "The adjective 'rough' in 'rough beast' creates a sense of:", options: ["refinement", "beauty", "tenderness", "brutality and primitiveness"], ans: 3, note: "Unrefined, raw, destructive force." },
+      { id: 48, q: "'Pitiless' suggests:", options: ["mercy", "lack of compassion", "affection", "friendship"], ans: 1, note: "Rorshach-like cold, uncompromising force." },
+      { id: 49, q: "The comparison with the sun makes the creature's gaze seem:", options: ["weak and uncertain", "powerful and indifferent", "loving and gentle", "humorous"], ans: 1, note: "The sun shines without human warmth or bias." },
+      { id: 50, q: "'Reel shadows' is an example of:", options: ["visual imagery", "auditory imagery", "taste imagery", "olfactory imagery"], ans: 0, note: "Visual image of swirling desert shadows." },
+      { id: 51, q: "'The nightmare of a rocking cradle' combines the ideas of:", options: ["birth and terror", "love and peace", "education and childhood", "music and dance"], ans: 0, note: "Juxtaposes gentle nursery comfort with terrifying visions." },
+      { id: 52, q: "The rocking cradle traditionally suggests:", options: ["death only", "infancy and birth", "political power", "war"], ans: 1, note: "Standard emblem of infant care." },
+      { id: 53, q: "The adjective 'rough' in 'rough beast' creates a sense of:", options: ["refinement", "brutality and primitiveness", "beauty", "tenderness"], ans: 1, note: "Unrefined, raw, destructive force." },
       { id: 54, q: "'Slouches' is particularly effective because it suggests:", options: ["graceful movement", "awkward, threatening movement", "joyful dancing", "rapid flight"], ans: 1, note: "Heavy, lumbering, sinister progression." },
-      { id: 55, q: "The final question is an example of:", options: ["pun", "rhetorical questioning", "understatement", "apostrophe"], ans: 1, note: "Leaves a haunting, unanswered question for the reader." },
+      { id: 55, q: "The final question is an example of:", options: ["rhetorical questioning", "pun", "understatement", "apostrophe"], ans: 0, note: "Leaves a haunting, unanswered question for the reader." },
 
       { id: 56, q: "The falcon symbolizes a force that has:", options: ["become increasingly independent from its controlling centre", "become more obedient", "disappeared completely", "become peaceful"], ans: 0, note: "Drifting away beyond hearing distance." },
-      { id: 57, q: "The falconer can symbolize:", options: ["natural beauty", "childhood", "controlling authority", "death alone"], ans: 2, note: "Order, religion, reason, or civilized leadership." },
-      { id: 58, q: "The 'gyre' is connected with Yeats's idea of:", options: ["romantic love", "scientific progress", "geography", "historical cycles"], ans: 3, note: "Esoteric philosophy of history in *A Vision*." },
-      { id: 59, q: "'The centre' symbolically suggests:", options: ["a physical building", "social, moral and spiritual order", "a battlefield", "a desert"], ans: 1, note: "Core stabilizing forces of humanity." },
-      { id: 60, q: "The 'blood-dimmed tide' symbolizes:", options: ["prosperity", "rainfall", "violence and destruction", "religious peace"], ans: 2, note: "Overwhelming wave of war and death." },
+      { id: 57, q: "The falconer can symbolize:", options: ["controlling authority", "natural beauty", "childhood", "death alone"], ans: 0, note: "Order, religion, reason, or civilized leadership." },
+      { id: 58, q: "The 'gyre' is connected with Yeats's idea of:", options: ["historical cycles", "romantic love", "scientific progress", "geography"], ans: 0, note: "Esoteric philosophy of history in *A Vision*." },
+      { id: 59, q: "'The centre' symbolically suggests:", options: ["social, moral and spiritual order", "a physical building", "a battlefield", "a desert"], ans: 0, note: "Core stabilizing forces of humanity." },
+      { id: 60, q: "The 'blood-dimmed tide' symbolizes:", options: ["prosperity", "violence and destruction", "rainfall", "religious peace"], ans: 1, note: "Overwhelming wave of war and death." },
       { id: 61, q: "The 'ceremony of innocence' most likely represents:", options: ["moral purity and civilized values", "political violence", "military power", "natural disasters"], ans: 0, note: "Cultivated human decency and rituals." },
-      { id: 62, q: "The drowning of innocence suggests:", options: ["the triumph of moral order", "the growth of education", "the return of peace", "the destruction of traditional moral values"], ans: 3, note: "Eradication of purity by chaos." },
-      { id: 63, q: "'The best' and 'the worst' represent:", options: ["two animals", "two groups with contrasting responses to crisis", "two poets", "two historical kings"], ans: 1, note: "Passive moderates vs aggressive fanatics." },
-      { id: 64, q: "The 'rough beast' is best understood as:", options: ["an ordinary animal", "a harmless creature", "a symbol of an emerging frightening historical force", "a Christian angel"], ans: 2, note: "Archetypal incarnation of the new era." },
+      { id: 62, q: "The drowning of innocence suggests:", options: ["the triumph of moral order", "the destruction of traditional moral values", "the growth of education", "the return of peace"], ans: 1, note: "Eradication of purity by chaos." },
+      { id: 63, q: "'The best' and 'the worst' represent:", options: ["two groups with contrasting responses to crisis", "two animals", "two poets", "two historical kings"], ans: 0, note: "Passive moderates vs aggressive fanatics." },
+      { id: 64, q: "The 'rough beast' is best understood as:", options: ["an ordinary animal", "a symbol of an emerging frightening historical force", "a harmless creature", "a Christian angel"], ans: 1, note: "Archetypal incarnation of the new era." },
       { id: 65, q: "Bethlehem in the poem is important because it is associated with:", options: ["Christ's birth", "Yeats's childhood", "the First World War", "Greek mythology"], ans: 0, note: "Historical origin of the Christian era." },
-      { id: 66, q: "The beast moving toward Bethlehem creates a striking contrast between:", options: ["summer and winter", "youth and age", "traditional Christian hope and a terrifying new birth", "land and sea"], ans: 2, note: "Replaces gentle salvation with brute terror." },
+      { id: 66, q: "The beast moving toward Bethlehem creates a striking contrast between:", options: ["traditional Christian hope and a terrifying new birth", "summer and winter", "youth and age", "land and sea"], ans: 0, note: "Replaces gentle salvation with brute terror." },
       { id: 67, q: "The desert setting contributes to the poem's sense of:", options: ["fertility", "desolation and mystery", "comedy", "domestic happiness"], ans: 1, note: "Stark, empty background heightens dread." },
-      { id: 68, q: "The image of the sphinx-like creature is associated with:", options: ["modern technology", "romantic love", "ancient mystery and terror", "childhood innocence"], ans: 2, note: "Evokes ancient Egyptian/pagan power." },
+      { id: 68, q: "The image of the sphinx-like creature is associated with:", options: ["ancient mystery and terror", "modern technology", "romantic love", "childhood innocence"], ans: 0, note: "Evokes ancient Egyptian/pagan power." },
       { id: 69, q: "The contrast between birth and nightmare creates:", options: ["disturbing irony", "comic effect", "romantic sentiment", "peaceful imagery"], ans: 0, note: "Birth is usually hopeful, here monstrous." },
-      { id: 70, q: "The poem's imagery moves from:", options: ["love toward marriage", "nature toward farming", "political disorder toward a mysterious supernatural vision", "childhood toward education"], ans: 2, note: "From real-world crisis to cosmic vision." },
+      { id: 70, q: "The poem's imagery moves from:", options: ["political disorder toward a mysterious supernatural vision", "love toward marriage", "nature toward farming", "childhood toward education"], ans: 0, note: "From real-world crisis to cosmic vision." },
 
-      { id: 71, q: "The Second Coming was written in the aftermath of:", options: ["the Second World War", "the First World War and revolutionary upheaval", "the Industrial Revolution only", "the Renaissance"], ans: 1, note: "Composed in early 1919." },
-      { id: 72, q: "The poem was written during a period marked by:", options: ["complete global peace", "economic prosperity everywhere", "scientific harmony", "political and social instability"], ans: 3, note: "Global unrest following WWI." },
+      { id: 71, q: "The Second Coming was written in the aftermath of:", options: ["the First World War and revolutionary upheaval", "the Second World War", "the Industrial Revolution only", "the Renaissance"], ans: 0, note: "Composed in early 1919." },
+      { id: 72, q: "The poem was written during a period marked by:", options: ["political and social instability", "complete global peace", "economic prosperity everywhere", "scientific harmony"], ans: 0, note: "Global unrest following WWI." },
       { id: 73, q: "The Russian Revolution was one of the historical events forming part of the wider context of:", options: ["the poem", "Shakespeare's Macbeth", "Romantic poetry", "Victorian comedy"], ans: 0, note: "The 1917 Bolshevik Revolution alarmed Yeats." },
-      { id: 74, q: "Yeats's Irish background is relevant because he lived during:", options: ["complete Irish political stability", "considerable political and social conflict in Ireland", "the Roman Empire", "the medieval period"], ans: 1, note: "Rising of 1916 and Anglo-Irish conflict." },
-      { id: 75, q: "The poem reflects the anxieties of:", options: ["the medieval age only", "ancient Greece only", "the modern age", "the Elizabethan age"], ans: 2, note: "Key landmark of Modernist literature." },
-      { id: 76, q: "Yeats's concept of history is often described as:", options: ["completely random", "purely linear", "static", "cyclical"], ans: 3, note: "History repeats in expanding loops/gyres." },
+      { id: 74, q: "Yeats's Irish background is relevant because he lived during:", options: ["considerable political and social conflict in Ireland", "complete Irish political stability", "the Roman Empire", "the medieval period"], ans: 0, note: "Rising of 1916 and Anglo-Irish conflict." },
+      { id: 75, q: "The poem reflects the anxieties of:", options: ["the modern age", "the medieval age only", "ancient Greece only", "the Elizabethan age"], ans: 0, note: "Key landmark of Modernist literature." },
+      { id: 76, q: "Yeats's concept of history is often described as:", options: ["cyclical", "completely random", "purely linear", "static"], ans: 0, note: "History repeats in expanding loops/gyres." },
       { id: 77, q: "The title invokes a traditional Christian idea, but Yeats:", options: ["transforms it into a disturbing vision", "ignores it completely", "presents it as a comedy", "removes all religious significance"], ans: 0, note: "Subverts biblical expectation." },
-      { id: 78, q: "The poem is often associated with:", options: ["medieval romance", "literary Modernism", "Restoration comedy", "pastoral poetry"], ans: 1, note: "Emblematic Modernist text." },
+      { id: 78, q: "The poem is often associated with:", options: ["literary Modernism", "medieval romance", "Restoration comedy", "pastoral poetry"], ans: 0, note: "Emblematic Modernist text." },
 
-      { id: 79, q: "Choose the synonym of 'gyre.'", options: ["straight line", "wall", "spiral", "valley"], ans: 2, note: "Gyre = circular or spiral movement." },
+      { id: 79, q: "Choose the synonym of 'gyre.'", options: ["spiral", "straight line", "wall", "valley"], ans: 0, note: "Gyre = circular or spiral movement." },
       { id: 80, q: "Choose the synonym of 'anarchy.'", options: ["order", "lawlessness", "discipline", "peace"], ans: 1, note: "Anarchy = total lack of rule/law." },
-      { id: 81, q: "Choose the antonym of 'anarchy.'", options: ["chaos", "disorder", "confusion", "order"], ans: 3, note: "Opposite of lawlessness is order." },
+      { id: 81, q: "Choose the antonym of 'anarchy.'", options: ["chaos", "disorder", "order", "confusion"], ans: 2, note: "Opposite of lawlessness is order." },
       { id: 82, q: "Choose the synonym of 'conviction.'", options: ["belief", "doubt", "fear", "confusion"], ans: 0, note: "Conviction = firm belief." },
       { id: 83, q: "Choose the antonym of 'innocence.'", options: ["purity", "guilt", "simplicity", "virtue"], ans: 1, note: "Opposite of innocence is guilt." },
-      { id: 84, q: "Choose the synonym of 'intensity.'", options: ["weakness", "silence", "strength", "calmness"], ans: 2, note: "Intensity = high degree of energy/strength." },
-      { id: 85, q: "Choose the antonym of 'pitiless.'", options: ["cruel", "merciless", "harsh", "compassionate"], ans: 3, note: "Pitiless means merciless; antonym is compassionate." },
+      { id: 84, q: "Choose the synonym of 'intensity.'", options: ["weakness", "strength", "silence", "calmness"], ans: 1, note: "Intensity = high degree of energy/strength." },
+      { id: 85, q: "Choose the antonym of 'pitiless.'", options: ["cruel", "merciless", "compassionate", "harsh"], ans: 2, note: "Pitiless means merciless; antonym is compassionate." },
       { id: 86, q: "Choose the synonym of 'apparition.'", options: ["ghostly vision", "ordinary person", "soldier", "king"], ans: 0, note: "Apparition = supernatural vision or sight." },
-      { id: 87, q: "Choose the synonym of 'indignant.'", options: ["joyful", "angry", "sleepy", "peaceful"], ans: 1, note: "Indignant = feeling anger at unfairness." },
+      { id: 87, q: "Choose the synonym of 'indignant.'", options: ["angry", "joyful", "sleepy", "peaceful"], ans: 0, note: "Indignant = feeling anger at unfairness." },
       { id: 88, q: "Choose the antonym of 'passionate.'", options: ["emotional", "intense", "indifferent", "enthusiastic"], ans: 2, note: "Opposite of passionate is indifferent." },
-      { id: 89, q: "Choose the synonym of 'slouches.'", options: ["flies rapidly", "moves awkwardly", "dances gracefully", "runs quickly"], ans: 1, note: "Slouch = move heavily or awkwardly." },
-      { id: 90, q: "Choose the antonym of 'widening.'", options: ["expanding", "enlarging", "increasing", "narrowing"], ans: 3, note: "Opposite of widening is narrowing." },
+      { id: 89, q: "Choose the synonym of 'slouches.'", options: ["moves awkwardly", "flies rapidly", "dances gracefully", "runs quickly"], ans: 0, note: "Slouch = move heavily or awkwardly." },
+      { id: 90, q: "Choose the antonym of 'widening.'", options: ["expanding", "enlarging", "narrowing", "increasing"], ans: 2, note: "Opposite of widening is narrowing." },
 
       { id: 91, q: "The Second Coming is primarily written in:", options: ["a strict sonnet form", "blank verse", "free verse", "heroic couplets"], ans: 2, note: "Written in free verse with iambic tendencies." },
       { id: 92, q: "The poem consists of:", options: ["two stanzas", "one stanza only", "four equal stanzas", "three sonnets"], ans: 0, note: "Stanza 1 (22 lines) and Stanza 2." },
-      { id: 93, q: "The first stanza mainly describes:", options: ["a love affair", "social and political disorder", "a peaceful landscape", "a religious ceremony"], ans: 1, note: "Focuses on the world falling apart." },
-      { id: 94, q: "The second stanza moves toward:", options: ["a comic scene", "a romantic conversation", "a supernatural and terrifying vision", "a political speech"], ans: 2, note: "Moves into the vision from Spiritus Mundi." },
-      { id: 95, q: "The tone of the opening is mainly:", options: ["humorous", "celebratory", "sentimental", "ominous and anxious"], ans: 3, note: "Dark and alarming tone." },
+      { id: 93, q: "The first stanza mainly describes:", options: ["social and political disorder", "a love affair", "a peaceful landscape", "a religious ceremony"], ans: 0, note: "Focuses on the world falling apart." },
+      { id: 94, q: "The second stanza moves toward:", options: ["a supernatural and terrifying vision", "a comic scene", "a romantic conversation", "a political speech"], ans: 0, note: "Moves into the vision from Spiritus Mundi." },
+      { id: 95, q: "The tone of the opening is mainly:", options: ["ominous and anxious", "humorous", "celebratory", "sentimental"], ans: 0, note: "Dark and alarming tone." },
       { id: 96, q: "The expression 'The best lack all conviction, while the worst / Are full of passionate intensity' is significant because it presents:", options: ["contrast", "rhyme only", "humour", "personification only"], ans: 0, note: "Direct antithetical contrast." },
-      { id: 97, q: "What is the significance of the word 'again' in the poem's opening movement toward the Second Coming?", options: ["It means nothing", "It suggests repetition or recurrence", "It refers to the falcon", "It indicates a wedding"], ans: 1, note: "Highlights the cyclical return of history." },
-      { id: 98, q: "Why is the traditional expectation of Christ's Second Coming unsettlingly transformed?", options: ["Christ is shown as a child", "Bethlehem disappears", "The expected saviour-like figure is replaced by a terrifying beast", "The falcon becomes a Christian symbol"], ans: 2, note: "Distorts Christian hope into dread." },
+      { id: 97, q: "What is the significance of the word 'again' in the poem's opening movement toward the Second Coming?", options: ["It suggests repetition or recurrence", "It means nothing", "It refers to the falcon", "It indicates a wedding"], ans: 0, note: "Highlights the cyclical return of history." },
+      { id: 98, q: "Why is the traditional expectation of Christ's Second Coming unsettlingly transformed?", options: ["The expected saviour-like figure is replaced by a terrifying beast", "Christ is shown as a child", "Bethlehem disappears", "The falcon becomes a Christian symbol"], ans: 0, note: "Distorts Christian hope into dread." },
       { id: 99, q: "Which statement best explains the paradoxical relationship between 'birth' and 'nightmare'?", options: ["Birth normally suggests hope, but here it suggests the arrival of something terrifying.", "Birth always means death.", "Nightmare always means happiness.", "The two words have identical meanings."], ans: 0, note: "Irony of bringing terror into the world." },
-      { id: 100, q: "Which is the most comprehensive interpretation of The Second Coming?", options: ["It celebrates the return of Christian peace.", "It describes the beauty of the natural world.", "It is primarily a poem about a falcon.", "It presents a terrifying vision of historical transformation in which established order collapses and a mysterious new age approaches."], ans: 3, note: "Encompasses the poem's full philosophical and poetic scope." }
+      { id: 100, q: "Which is the most comprehensive interpretation of The Second Coming?", options: ["It celebrates the return of Christian peace.", "It describes the beauty of the natural world.", "It presents a terrifying vision of historical transformation in which established order collapses and a mysterious new age approaches.", "It is primarily a poem about a falcon."], ans: 2, note: "Encompasses the poem's full philosophical and poetic scope." }
     ];
 
     let userAnswers = {};
@@ -488,6 +712,27 @@
     let viewMode = 'paged';
     let filteredQuestions = [...questions];
 
+    // WORD MODAL LOGIC
+    function initClickableWords() {
+      document.querySelectorAll('.dict-word').forEach(element => {
+        element.addEventListener('click', function() {
+          const word = this.getAttribute('data-word');
+          const bn = this.getAttribute('data-bn');
+          const note = this.getAttribute('data-note');
+
+          document.getElementById('wm-word').innerText = word;
+          document.getElementById('wm-bn').innerText = bn;
+          document.getElementById('wm-note').innerText = note;
+          document.getElementById('word-modal').style.display = 'flex';
+        });
+      });
+    }
+
+    function closeWordModal() {
+      document.getElementById('word-modal').style.display = 'none';
+    }
+
+    // QUIZ RENDER LOGIC
     function renderQuiz() {
       const container = document.getElementById('quiz-cards-container');
       container.innerHTML = '';
@@ -683,6 +928,8 @@
       });
     }
 
+    // Initialize interactive words & quiz
+    initClickableWords();
     renderQuiz();
   </script>
 </body>
